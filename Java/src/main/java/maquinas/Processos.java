@@ -33,7 +33,7 @@ public class Processos extends ProcessoGrupo {
                 Processos:
                 """, this.getTotalProcessos(), this.getTotalThreads());
 
-        for (int i = 0; i < getProcessos().size(); i++) {
+        for (int i = 0; i < 10; i++) {
             Processo processo = getProcessos().get(i);
             a += "-".repeat(20);
             a += "\n"+ processo.toString();

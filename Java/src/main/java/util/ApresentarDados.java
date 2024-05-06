@@ -13,7 +13,6 @@ public class ApresentarDados {
     CPUSpec cpuSpec = new CPUSpec();
     HDSpec hdSpec = new HDSpec();
     RAM ram = new RAM();
-
     USB usb = new USB();
 
     Processos processos = new Processos();
@@ -21,7 +20,6 @@ public class ApresentarDados {
     public void pegarDadosTabela() {
         con.query("SELECT * FROM Cpu", new BeanPropertyRowMapper<>(CPU.class));
         con.query("SELECT * FROM CpuSpec", new BeanPropertyRowMapper<>(CPUSpec.class));
-        //con.query("SELECT * FROM HDSpec", new BeanPropertyRowMapper<>(HDSpec.class));
         con.query("SELECT * FROM RAM", new BeanPropertyRowMapper<>(RAM.class));
 
         System.out.println(String.format("""

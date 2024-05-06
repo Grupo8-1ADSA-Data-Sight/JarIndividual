@@ -29,10 +29,10 @@ public class InserirDadosNaTabela {
 
     public void inserindoDadosNaTabela(){
         //Inserindo no banco de dados dados da CPU, puxando os dados pela API - looca
-        con.update("INSERT INTO CPU (uso, DataHoraLeitura, fkMaquina) values (?, now(), 12)", cpu.getUsoCPU());
+        con.update("INSERT INTO CPU (uso, DataHoraLeitura, fkMaquina) values (?, now(), 1)", cpu.getUsoCPU());
 
         //Inserindo no banco de dados dados da CPUSpec, puxando os dados pela API - looca
-        con.update("INSERT INTO CPUSpec (fabricante, nome, identificador, qtdNucleo, frequenciaGHz,temperatura,fkCPU) values (?, ?, ?, ?, ?,?,1)", cpuSpec.getFabricante(), cpuSpec.getNome(), cpuSpec.getIdentificador(), cpuSpec.getQtdNucleo(), cpuSpec.getFrequenciaGHz(), cpuSpec.getTemperaturaCPU());
+        con.update("INSERT INTO CPUSpec (fabricante, nome, identificador, qtdNucleo, frequenciaGHz,fkCPU) values (?, ?, ?, ?, ?,1)", cpuSpec.getFabricante(), cpuSpec.getNome(), cpuSpec.getIdentificador(), cpuSpec.getQtdNucleo(), cpuSpec.getFrequenciaGHz());
 
 //        //Inserindo no banco de dados dados da HD, puxando os dados pela API - looca
 //        con.update("INSERT INTO HD (DataHoraLeitura, fkMaquina) values (now(), 1)");
@@ -41,6 +41,6 @@ public class InserirDadosNaTabela {
 //        con.update("INSERT INTO HDSpec (Modelo, Tamanho, Leitura, fkHD) values (?, ?, ?, 1)", hdSpec.getModelo(), hdSpec.getTamanho(), hdSpec.getLeitura());
 
         //Inserindo no banco de dados dados da RAM, puxando os dados pela API - looca
-        con.update("INSERT INTO RAM (EmUso, Total, Disponivel,DataHoraLeitura, fkMaquina) values (?, ?, ?, now(), 12)", ram.getEmUso(), ram.getTotal(), ram.getDisponivel());
+        con.update("INSERT INTO RAM (EmUso, Total, Disponivel,DataHoraLeitura, fkMaquina) values (?, ?, ?, now(), 1)", ram.getEmUso(), ram.getTotal(), ram.getDisponivel());
     }
 }

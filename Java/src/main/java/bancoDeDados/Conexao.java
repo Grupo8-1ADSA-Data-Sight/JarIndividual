@@ -11,7 +11,7 @@ public class Conexao {
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/dataSight");
         dataSource.setUsername("root");
-        dataSource.setPassword("123456");
+        dataSource.setPassword("2310");
 
         conexaoDoBanco = new JdbcTemplate(dataSource);
     }

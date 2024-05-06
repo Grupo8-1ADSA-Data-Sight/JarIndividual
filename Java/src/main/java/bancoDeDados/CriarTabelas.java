@@ -31,7 +31,6 @@ public class CriarTabelas {
                 	identificador varchar(200) NOT NULL,
                 	qtdNucleo int NOT NULL,
                 	frequenciaGHz DOUBLE  NOT NULL,
-                	temperatura DOUBLE NOT NULL,
                 	fkCPU INT NOT NULL,
                 	CONSTRAINT fkCPUSpecCPU FOREIGN KEY (fkCPU) REFERENCES CPU(idCPU)
                 )""");
