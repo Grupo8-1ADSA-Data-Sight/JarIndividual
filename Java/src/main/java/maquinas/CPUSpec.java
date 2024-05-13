@@ -4,27 +4,28 @@ import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.processador.Processador;
 import com.github.britooo.looca.api.group.temperatura.Temperatura;
 
-
-public class CPUSpec extends Processador {
+public class CPUSpec {
     Looca looca = new Looca();
+
     Processador processador = new Processador();
+
     Temperatura temperatura = new Temperatura();
+
     private String fabricante;
+
     private String nome;
+
     private String identificador;
+
     private Integer qtdNucleo;
+
     private Long frequenciaGHz;
 
+    private Double temperaturaCPU;
+
     public CPUSpec() {
-        this.fabricante = processador.getFabricante();
-        this.nome = processador.getNome();
-        this.identificador = processador.getIdentificador();
-        this.qtdNucleo = processador.getNumeroCpusFisicas() + processador.getNumeroCpusLogicas();
-        this.frequenciaGHz = processador.getFrequencia();
     }
 
-
-    @Override
     public String getFabricante() {
         return fabricante;
     }
@@ -33,7 +34,6 @@ public class CPUSpec extends Processador {
         this.fabricante = fabricante;
     }
 
-    @Override
     public String getNome() {
         return nome;
     }
@@ -42,7 +42,6 @@ public class CPUSpec extends Processador {
         this.nome = nome;
     }
 
-    @Override
     public String getIdentificador() {
         return identificador;
     }
@@ -67,16 +66,24 @@ public class CPUSpec extends Processador {
         this.frequenciaGHz = frequenciaGHz;
     }
 
+    public Double getTemperaturaCPU() {
+        return temperaturaCPU;
+    }
+
+    public void setTemperaturaCPU(Double temperaturaCPU) {
+        this.temperaturaCPU = temperaturaCPU;
+    }
 
     @Override
     public String toString() {
         return String.format("""
                 Dados da CPU:
                 Fabricante: %s
-                Nome: %s            
+                Nome: %s
                 Identificador: %s
-                Quantidade de núcleos: %s
-                frequencia(GHz): %s       
-                """,fabricante, nome, identificador, qtdNucleo, frequenciaGHz);
+                Quantidade de Núcleos: %s
+                Frequencia(GHz): %s
+                Temperatura: %s 
+                """, fabricante, nome, identificador, qtdNucleo, frequenciaGHz, temperatura);
     }
 }
