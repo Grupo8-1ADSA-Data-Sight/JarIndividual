@@ -1,9 +1,7 @@
 package util;
 
 import bancoDeDados.Conexao;
-import maquinas.CPU;
-import maquinas.CPUSpec;
-import maquinas.Ram;
+import maquinas.*;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -11,20 +9,26 @@ public class ApresentarDados {
     Usuario usuario = new Usuario();
     Conexao conexao = new Conexao();
     JdbcTemplate con = conexao.getConexaoDoBanco();
+    CPULeitura cpuLeitura = new CPULeitura();
     CPU cpu = new CPU();
-    CPUSpec cpuSpec = new CPUSpec();
-    Ram ram = new Ram();
+    HD hd = new HD();
+//    RAM ram = new RAM();
 
+    USB usb = new USB();
+
+    Processos processos = new Processos();
 
     public void pegarDadosTabela() {
         con.query("SELECT * FROM Cpu", new BeanPropertyRowMapper<>(CPU.class));
-        con.query("SELECT * FROM CpuSpec", new BeanPropertyRowMapper<>(CPUSpec.class));
-        con.query("SELECT * FROM RAM", new BeanPropertyRowMapper<>(Ram.class));
+        con.query("SELECT * FROM CpuLeitura", new BeanPropertyRowMapper<>(CPULeitura.class));
+        con.query("SELECT * FROM HDLeitura", new BeanPropertyRowMapper<>(HD.class));
+//        con.query("SELECT * FROM RAM", new BeanPropertyRowMapper<>(RAM.class));
 
         System.out.println(String.format("""
-                Especificações do CPU: %s
-                Dados do CPU: %s
-                Dados da RAM: %s
-                """,  this.cpuSpec, this.cpu, this.ram));
+                %s
+                %s
+                %s
+                %s
+                """,  this.cpu, this.cpuLeitura, this.processos,this.usb));
     }
 }
