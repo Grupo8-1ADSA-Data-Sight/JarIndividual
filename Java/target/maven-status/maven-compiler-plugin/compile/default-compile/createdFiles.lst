@@ -1,0 +1,7 @@
+service\LoocaService.class
+util\MainSlack.class
+bancoDeDados\Conexao.class
+program\Main.class
+util\ApresentarDados.class
+util\Usuario.class
+util\Slack.class
