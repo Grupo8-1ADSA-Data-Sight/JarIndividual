@@ -1,0 +1,100 @@
+2024-06-05 19:59:45 - Log.txt iniciado
+2024-06-05 19:59:47 - Login efetuado no sistema
+2024-06-05 19:59:48 - Dados fixos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-05 19:59:53 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-05 19:59:55 - Uso do processador em 6,28%
+2024-06-05 19:59:55 - Uso do disco em 20,44%
+2024-06-05 19:59:55 - Uso da memória ram acima de 90,78%, manter alerta!!
+2024-06-05 20:00:01 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-05 20:00:01 - Uso do processador em 6,28%
+2024-06-05 20:00:01 - Uso do disco em 20,44%
+2024-06-05 20:00:01 - Uso da memória ram acima de 90,78%, manter alerta!!
+2024-06-05 20:00:07 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-05 20:00:07 - Uso do processador em 7,25%
+2024-06-05 20:00:07 - Uso do disco em 20,44%
+2024-06-05 20:00:07 - Uso da memória ram acima de 91,70%, manter alerta!!
+2024-06-05 20:00:13 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-05 20:00:13 - Uso do processador em 14,12%
+2024-06-05 20:00:13 - Uso do disco em 20,44%
+2024-06-05 20:00:13 - Uso da memória ram acima de 91,36%, manter alerta!!
+2024-06-05 20:00:19 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-05 20:00:19 - Uso do processador em 6,10%
+2024-06-05 20:00:19 - Uso do disco em 20,44%
+2024-06-05 20:00:19 - Uso da memória ram acima de 91,52%, manter alerta!!
+2024-06-05 20:00:25 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-05 20:00:25 - Uso do processador em 7,90%
+2024-06-05 20:00:25 - Uso do disco em 20,44%
+2024-06-05 20:00:25 - Uso da memória ram acima de 91,42%, manter alerta!!
+2024-06-05 20:00:31 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-05 20:00:31 - Uso do processador em 10,89%
+2024-06-05 20:00:31 - Uso do disco em 20,44%
+2024-06-05 20:00:31 - Uso da memória ram acima de 91,65%, manter alerta!!
+2024-06-05 20:00:37 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-05 20:00:37 - Uso do processador em 10,84%
+2024-06-05 20:00:37 - Uso do disco em 20,44%
+2024-06-05 20:00:37 - Uso da memória ram acima de 91,52%, manter alerta!!
+2024-06-05 20:00:43 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-05 20:00:43 - Uso do processador em 20,52%
+2024-06-05 20:00:43 - Uso do disco em 20,44%
+2024-06-05 20:00:43 - Uso da memória ram acima de 91,43%, manter alerta!!
+2024-06-05 20:00:49 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-05 20:00:49 - Uso do processador em 5,45%
+2024-06-05 20:00:49 - Uso do disco em 20,44%
+2024-06-05 20:00:49 - Uso da memória ram acima de 91,25%, manter alerta!!
+2024-06-05 20:00:55 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-05 20:00:56 - Uso do processador em 28,70%
+2024-06-05 20:00:56 - Uso do disco em 20,44%
+2024-06-05 20:00:56 - Uso da memória ram acima de 89,49%, manter alerta!!
+2024-06-05 20:01:01 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-05 20:01:02 - Uso do processador em 17,43%
+2024-06-05 20:01:02 - Uso do disco em 20,44%
+2024-06-05 20:01:02 - Uso da memória ram acima de 89,51%, manter alerta!!
+2024-06-05 20:01:07 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-05 20:01:08 - Uso do processador em 11,20%
+2024-06-05 20:01:08 - Uso do disco em 20,44%
+2024-06-05 20:01:08 - Uso da memória ram acima de 90,70%, manter alerta!!
+2024-06-05 20:01:13 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-05 20:01:14 - Uso do processador em 5,49%
+2024-06-05 20:01:14 - Uso do disco em 20,44%
+2024-06-05 20:01:14 - Uso da memória ram acima de 90,43%, manter alerta!!
+2024-06-05 20:01:19 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-05 20:01:19 - Uso do processador em 5,51%
+2024-06-05 20:01:19 - Uso do disco em 20,44%
+2024-06-05 20:01:19 - Uso da memória ram acima de 90,47%, manter alerta!!
+2024-06-05 20:01:25 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-05 20:01:25 - Uso do processador em 9,59%
+2024-06-05 20:01:25 - Uso do disco em 20,44%
+2024-06-05 20:01:25 - Uso da memória ram acima de 90,31%, manter alerta!!
+2024-06-05 20:01:31 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-05 20:01:31 - Uso do processador em 7,87%
+2024-06-05 20:01:31 - Uso do disco em 20,44%
+2024-06-05 20:01:31 - Uso da memória ram acima de 90,31%, manter alerta!!
+2024-06-05 20:01:37 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-05 20:01:37 - Uso do processador em 10,08%
+2024-06-05 20:01:37 - Uso do disco em 20,44%
+2024-06-05 20:01:37 - Uso da memória ram acima de 90,02%, manter alerta!!
+2024-06-05 20:01:43 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-05 20:01:43 - Uso do processador em 4,48%
+2024-06-05 20:01:43 - Uso do disco em 20,44%
+2024-06-05 20:01:43 - Uso da memória ram acima de 89,94%, manter alerta!!
+2024-06-05 20:30:14 - Log.txt iniciado
+2024-06-05 20:30:16 - Login efetuado no sistema
+2024-06-05 20:30:17 - Dados fixos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-05 20:30:28 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-06 16:46:28 - Log.txt iniciado
+2024-06-06 16:46:30 - Login efetuado no sistema
+2024-06-06 16:46:30 - Dados fixos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-06 16:46:35 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-06 16:46:43 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-06 16:46:49 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-06 16:46:54 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-06 16:47:00 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-06 16:47:05 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-06 16:47:11 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-06 16:47:16 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-06 16:47:22 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-06 16:47:27 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-06 16:47:33 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-06 16:47:39 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-06 16:47:44 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
+2024-06-06 16:47:50 - Dados dinamicos inseridos da CPU, Memória Ram, Disco e Rede enviados
