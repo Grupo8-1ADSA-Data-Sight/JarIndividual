@@ -16,6 +16,9 @@ public class ApresentarDados {
     public void iniciarDadosPrograma() throws IOException {
         Componentes componentes = new Componentes();
         InserirDadosNaTabela inserirDadosNaTabela  = new InserirDadosNaTabela();
+        Log logger = new Log();
+        logger.createLog();
+        logger.writeLog("Log iniciado");
 
         int i = 1;
         System.out.println("""
@@ -29,6 +32,8 @@ public class ApresentarDados {
 
         if (maquina.isLoginMaquina()) {
             System.out.println("Login do usuário efetuado com sucesso");
+            logger.writeLog("Login da maquina efetuado com sucesso");
+            logger.closeLog();
             inserirDadosNaTabela.inserirDadosFixos();
             System.out.println(componentes.exibirComponentesEstaticos());
             try{
@@ -38,13 +43,19 @@ public class ApresentarDados {
                     Thread.sleep(5000);
                 }
             } catch (IOReturnException e){
+                logger.writeLog("Erro IOReturnException durante a inserção de dados dinâmicos");
+                logger.closeLog();
                 System.out.println(e);
             } catch (InterruptedException e) {
+                logger.writeLog("Thread interrompida");
+                logger.closeLog();
                 throw new RuntimeException(e);
             }
         } else{
             String menssagem = "Maquina não encontrada, realize o cadastro no nosso site";
             System.out.println(menssagem);
+            logger.writeLog(menssagem);
+            logger.closeLog();
         }
     }
 }
