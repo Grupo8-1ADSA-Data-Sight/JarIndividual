@@ -5,6 +5,7 @@ import com.github.britooo.looca.api.group.discos.Volume;
 import com.github.britooo.looca.api.group.dispositivos.DispositivoUsb;
 import org.springframework.jdbc.core.JdbcTemplate;
 import util.Componentes;
+import util.Log;
 import util.Maquina;
 import util.Slack;
 import org.json.JSONObject;
@@ -29,10 +30,10 @@ public class InserirDadosNaTabela {
         logger.closeLog();
     }
 
-    private boolean dadosExistem(String sql, Object... params) {
-        logger.writeLog("Verificando se os dados existem no servidor SQL: " + sql);
+    private boolean dadosExistem(String sql, Object... params) throws IOException {
+        logger.writeLog("Verificando se os dados existem no servidor SQL: "+sql);
         Integer count = conServer.queryForObject(sql, params, Integer.class);
-        logger.writeLog("Resultado da verificação: " + (count == null ? "null" : count));
+        logger.writeLog("Resultado da verificação: "+(count == null ? "null" : count));
 
         return count == null || count <= 0;
     }
@@ -100,22 +101,22 @@ public class InserirDadosNaTabela {
 //        con.update("INSERT INTO Rede (modelo, ipv4, fkMaquina) values (?, ?, ?)", looca.getRede().getParametros().getNomeDeDominio(), looca.getRede().getGrupoDeInterfaces().getInterfaces().get(0).getEnderecoIpv4(), maquina.getIdMaquina());
 
         //Inserindo no banco de dados da USB, puxando os dados pela API - looca
-        logger.writeLog("Inserindo dados de leitura dos USBs");
-            for (int i = 0; i < looca.getDispositivosUsbGrupo().getDispositivosUsbConectados().size(); i++) {
-                con.update("INSERT INTO USB (totalConectados,dispositivo,dataHoraLeitura,fkMaquina)values(?,?,current_timestamp(),?);", looca.getDispositivosUsbGrupo().getTotalDispositvosUsbConectados(), looca.getDispositivosUsbGrupo().getDispositivosUsbConectados().get(i).getNome(), maquina.getIdMaquina());
-                conServer.update("INSERT INTO USB (totalConectados,dispositivo,dataHoraLeitura,fkMaquina)values(?,?,GETDATE(),?)", looca.getDispositivosUsbGrupo().getTotalDispositvosUsbConectados(), looca.getDispositivosUsbGrupo().getDispositivosUsbConectados().get(i).getNome(), maquina.getIdMaquina());
-            }
-            JSONObject json = new JSONObject();
-        if (!((con.queryForMap("Select totalConectados from USB order by dataHoraLeitura desc limit 1").containsValue(looca.getDispositivosUsbGrupo().getTotalDispositvosUsbConectados())))){
-            json.put("text",(String.format("""
-                Novo USB conectado!
-                Nome : %s""", looca.getDispositivosUsbGrupo().getDispositivosUsb().get(looca.getDispositivosUsbGrupo().getTotalDispositvosUsbConectados()-1).getNome())));
 
+            JSONObject json = new JSONObject();
+        logger.writeLog("Inserindo dados de leitura dos USBs");
+
+        if (!((con.queryForMap("Select totalConectados from USB order by dataHoraLeitura desc limit 1").containsValue(looca.getDispositivosUsbGrupo().getDispositivosUsb().size())))) {
+            json.put("text", """
+                     Novo USB conectado ou removido!
+                    """);
             Slack.sendMessage(json);
+            for (int i = 0; i < looca.getDispositivosUsbGrupo().getDispositivosUsb().size(); i++) {
+                con.update("INSERT INTO USB (totalConectados,dispositivo,dataHoraLeitura,fkMaquina)values(?,?,current_timestamp(),?);", looca.getDispositivosUsbGrupo().getDispositivosUsb().size(), looca.getDispositivosUsbGrupo().getDispositivosUsb().get(i).getNome(), maquina.getIdMaquina());
+                conServer.update("INSERT INTO USB (totalConectados,dispositivo,dataHoraLeitura,fkMaquina)values(?,?,GETDATE(),?)", looca.getDispositivosUsbGrupo().getDispositivosUsb().size(), looca.getDispositivosUsbGrupo().getDispositivosUsb().get(i).getNome(), maquina.getIdMaquina());
+            }
         }
 
         logger.writeLog("Dados dinâmicos da CPU, Memória RAM, Disco e Rede enviados");
         logger.closeLog();
-
     }
 }

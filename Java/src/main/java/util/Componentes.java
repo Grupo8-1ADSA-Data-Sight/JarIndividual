@@ -1,17 +1,40 @@
 package util;
 
+import bancoDeDados.Conexao;
+import bancoDeDados.ConexaoServer;
 import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.util.Conversor;
 import org.json.JSONObject;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import util.Maquina;
 import util.Slack;
 
 import java.io.IOException;
+import java.util.List;
 
 public class Componentes extends Looca {
     Maquina maquina = new Maquina();
+    ConexaoServer conexaoServer = new ConexaoServer();
+    JdbcTemplate conServer = conexaoServer.getConexaoDoBancoServer();
 
     private Integer fkMaquina;
+    private Integer idCustomizacao;
+    private Double usoCPU;
+    private Double usoHD;
+    private Double usoRAM;
+    private Integer fkEmpresa;
+    private Boolean permissao;
+
+
+    public Componentes(Maquina maquina, Integer idCustomizacao, Double usoCPU, Double usoHD, Double usoRAM, Integer fkEmpresa) throws IOException {
+        this.maquina = maquina;
+        this.idCustomizacao = idCustomizacao;
+        this.usoCPU = usoCPU;
+        this.usoHD = usoHD;
+        this.usoRAM = usoRAM;
+        this.fkEmpresa = fkEmpresa;
+    }
 
     public Componentes() throws IOException {
     }
@@ -62,8 +85,8 @@ public class Componentes extends Looca {
     }
     public String ExibirDispositivosUSB(){
         String textoSaida = "";
-        for (int i = 0; i < super.getDispositivosUsbGrupo().getDispositivosUsbConectados().size(); i++) {
-            textoSaida += "Dispositivo "+(i+1)+": "+getDispositivosUsbGrupo().getDispositivosUsbConectados().get(i)+" \n";
+        for (int i = 0; i < super.getDispositivosUsbGrupo().getDispositivosUsb().size(); i++) {
+            textoSaida += "Dispositivo "+(i+1)+": "+getDispositivosUsbGrupo().getDispositivosUsb().get(i)+" \n";
         }
         return textoSaida;
     }
@@ -170,7 +193,7 @@ public class Componentes extends Looca {
                 maquina.getIdMaquina(),
 
                 // Dados USB
-                super.getDispositivosUsbGrupo().getTotalDispositvosUsbConectados(),
+                super.getDispositivosUsbGrupo().getDispositivosUsb().size(),
                 this.fkMaquina
         );
     }
@@ -181,25 +204,30 @@ public class Componentes extends Looca {
         // convetendo disponivel da memória RAM
         Double disponivelEmGibRAM = super.getMemoria().getDisponivel() / 1e+9;
         JSONObject json = new JSONObject();
+        List<Componentes> customizados = conServer.query("Select * from customizacoes", new BeanPropertyRowMapper<>(Componentes.class));
 
-        if (getProcessador().getUso() > 1.0){
-            json.put("text",(String.format("""
-                Uso da CPU acima de %.2f%%, manter alerta!!""", getProcessador().getUso())));
-            Slack.sendMessage(json);
+        for (Componentes customizado : customizados) {
+            if (customizado.getFkEmpresa().equals(maquina.getFkEmpresa())) {
+                if (getProcessador().getUso() > customizado.getUsoCPU()) {
+                    json.put("text",(String.format("""
+                    Uso da CPU acima de %.2f%%, manter alerta!!""", getProcessador().getUso())));
+                    Slack.sendMessage(json);
+                }
+
+                if (porcentagemDeUsoHD > customizado.getUsoHD()) {
+                    json.put("text", (String.format("""
+                    Uso do disco acima de %.2f%%, manter alerta!!""", porcentagemDeUsoHD)));
+                    Slack.sendMessage(json);
+                }
+
+                if (porcentagemDeUsoRAM > customizado.getUsoRAM()) {
+                    json.put("text", (String.format("""
+                    Uso da memória ram acima de %.2f%%, manter alerta!!""", porcentagemDeUsoRAM)));
+                    Slack.sendMessage(json);
+                }
+            }
         }
 
-
-        if (porcentagemDeUsoHD > 70.0){
-            json.put("text", (String.format("""
-                Uso do disco acima de %.2f%%, manter alerta!!""", porcentagemDeUsoHD)));
-            Slack.sendMessage(json);
-        }
-
-        if (porcentagemDeUsoRAM > 80.0){
-            json.put("text", (String.format("""
-                Uso da memória ram acima de %.2f%%, manter alerta!!""", porcentagemDeUsoRAM)));
-            Slack.sendMessage(json);
-        }
 
         return String.format("""
                            |--------------------------|
@@ -225,7 +253,7 @@ public class Componentes extends Looca {
                            |                          |
                            |    %.1f%%   |  %.1f Gib    |
                            |__________________________|
-                           
+                            
                           
                         %n""",
                 super.getProcessador().getUso(),
@@ -234,6 +262,54 @@ public class Componentes extends Looca {
                 totalArmazenamentoDisponivel(),
                 porcentagemDeUsoRAM,
                 disponivelEmGibRAM);
+    }
+
+    public Integer getFkMaquina() {
+        return fkMaquina;
+    }
+
+    public void setFkMaquina(Integer fkMaquina) {
+        this.fkMaquina = fkMaquina;
+    }
+
+    public Integer getIdCustomizacao() {
+        return idCustomizacao;
+    }
+
+    public void setIdCustomizacao(Integer idCustomizacao) {
+        this.idCustomizacao = idCustomizacao;
+    }
+
+    public Double getUsoCPU() {
+        return usoCPU;
+    }
+
+    public void setUsoCPU(Double usoCPU) {
+        this.usoCPU = usoCPU;
+    }
+
+    public Double getUsoHD() {
+        return usoHD;
+    }
+
+    public void setUsoHD(Double usoHD) {
+        this.usoHD = usoHD;
+    }
+
+    public Double getUsoRAM() {
+        return usoRAM;
+    }
+
+    public void setUsoRAM(Double usoRAM) {
+        this.usoRAM = usoRAM;
+    }
+
+    public Integer getFkEmpresa() {
+        return fkEmpresa;
+    }
+
+    public void setFkEmpresa(Integer fkEmpresa) {
+        this.fkEmpresa = fkEmpresa;
     }
 }
 

@@ -19,7 +19,7 @@ public class Slack {
     }
 
     private static final HttpClient client = HttpClient.newHttpClient();
-    private static final String URL = "https://hooks.slack.com/services/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";
+    private static final String URL = "https://hooks.slack.com/services/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";
 
     public static void sendMessage(JSONObject content) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder(URI.create(URL))

@@ -1,0 +1,47 @@
+DataSight 2024-06-12 19:58:14 - Construtor InserirDadosNaTabela chamado
+DataSight 2024-06-12 19:58:14 - Log iniciado
+DataSight 2024-06-12 19:58:20 - Login da maquina efetuado com sucesso
+DataSight 2024-06-12 20:01:09 - Construtor InserirDadosNaTabela chamado
+DataSight 2024-06-12 20:28:39 - Construtor InserirDadosNaTabela chamado
+DataSight 2024-06-12 20:28:39 - Log iniciado
+DataSight 2024-06-12 20:28:45 - Login da maquina efetuado com sucesso
+DataSight 2024-06-12 20:29:10 - Método inserindoDadosDinamicos iniciado
+DataSight 2024-06-12 20:29:10 - Inserindo dados de leitura da CPU
+DataSight 2024-06-12 20:29:19 - Inserindo dados de leitura do HD
+DataSight 2024-06-12 20:29:20 - Inserindo dados de leitura da RAM
+DataSight 2024-06-12 20:29:21 - Inserindo dados de leitura dos USBs
+DataSight 2024-06-12 20:29:34 - Dados dinâmicos da CPU, Memória RAM, Disco e Rede enviados
+DataSight 2024-06-12 20:30:10 - Construtor InserirDadosNaTabela chamado
+DataSight 2024-06-12 20:30:10 - Log iniciado
+DataSight 2024-06-12 20:30:14 - Login da maquina efetuado com sucesso
+DataSight 2024-06-12 20:30:31 - Método inserindoDadosDinamicos iniciado
+DataSight 2024-06-12 20:30:31 - Inserindo dados de leitura da CPU
+DataSight 2024-06-12 20:30:44 - Inserindo dados de leitura do HD
+DataSight 2024-06-12 20:30:45 - Inserindo dados de leitura da RAM
+DataSight 2024-06-12 20:30:45 - Inserindo dados de leitura dos USBs
+DataSight 2024-06-12 20:30:55 - Dados dinâmicos da CPU, Memória RAM, Disco e Rede enviados
+DataSight 2024-06-12 20:31:12 - Método inserindoDadosDinamicos iniciado
+DataSight 2024-06-12 20:31:12 - Inserindo dados de leitura da CPU
+DataSight 2024-06-12 20:31:14 - Inserindo dados de leitura do HD
+DataSight 2024-06-12 20:31:22 - Inserindo dados de leitura da RAM
+DataSight 2024-06-12 20:31:23 - Inserindo dados de leitura dos USBs
+DataSight 2024-06-12 20:31:24 - Dados dinâmicos da CPU, Memória RAM, Disco e Rede enviados
+DataSight 2024-06-12 20:31:33 - Método inserindoDadosDinamicos iniciado
+DataSight 2024-06-12 20:31:33 - Inserindo dados de leitura da CPU
+DataSight 2024-06-12 20:31:40 - Inserindo dados de leitura do HD
+DataSight 2024-06-12 20:31:43 - Inserindo dados de leitura da RAM
+DataSight 2024-06-12 20:31:45 - Inserindo dados de leitura dos USBs
+DataSight 2024-06-12 20:31:45 - Dados dinâmicos da CPU, Memória RAM, Disco e Rede enviados
+DataSight 2024-06-12 20:31:55 - Método inserindoDadosDinamicos iniciado
+DataSight 2024-06-12 20:31:55 - Inserindo dados de leitura da CPU
+DataSight 2024-06-12 20:32:02 - Inserindo dados de leitura do HD
+DataSight 2024-06-12 20:32:05 - Inserindo dados de leitura da RAM
+DataSight 2024-06-12 20:32:07 - Inserindo dados de leitura dos USBs
+DataSight 2024-06-12 20:32:07 - Dados dinâmicos da CPU, Memória RAM, Disco e Rede enviados
+DataSight 2024-06-12 20:32:22 - Método inserindoDadosDinamicos iniciado
+DataSight 2024-06-12 20:32:22 - Inserindo dados de leitura da CPU
+DataSight 2024-06-12 20:32:24 - Inserindo dados de leitura do HD
+DataSight 2024-06-12 20:32:27 - Inserindo dados de leitura da RAM
+DataSight 2024-06-12 20:32:28 - Inserindo dados de leitura dos USBs
+DataSight 2024-06-12 20:32:28 - Dados dinâmicos da CPU, Memória RAM, Disco e Rede enviados
+DataSight 2024-06-12 20:32:40 - Construtor InserirDadosNaTabela chamado
