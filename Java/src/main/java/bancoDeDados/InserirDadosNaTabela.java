@@ -2,11 +2,15 @@ package bancoDeDados;
 
 import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.discos.Volume;
+import com.github.britooo.looca.api.group.dispositivos.DispositivoUsb;
 import org.springframework.jdbc.core.JdbcTemplate;
 import util.Componentes;
 import util.Maquina;
-
+import util.Slack;
+import org.json.JSONObject;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class InserirDadosNaTabela {
     Conexao conexao = new Conexao();
@@ -16,6 +20,7 @@ public class InserirDadosNaTabela {
     JdbcTemplate conServer = conexaoServer.getConexaoDoBancoServer();
     Maquina maquina = new Maquina();
     Componentes componentes = new Componentes();
+
 
     public InserirDadosNaTabela() throws IOException {
     }
@@ -48,7 +53,7 @@ public class InserirDadosNaTabela {
             conServer.update("INSERT INTO RAM (armazenamentoTotal, fkMaquina) values (?, ?)", looca.getMemoria().getTotal(), maquina.getIdMaquina());
         }
 
-//        if(dadosExistem("SELECT COUNT(*) FROM RAM WHERE fkMaquina = ?", maquina.getIdMaquina())){
+//       if(dadosExistem("SELECT COUNT(*) FROM RAM WHERE fkMaquina = ?", maquina.getIdMaquina())){
 //            if(dadosExistem("select armazenamentoTotal from ram where armazenamentoTotal != ?", looca.getMemoria().getTotal())){
 //                con.update("INSERT INTO RAM (armazenamentoTotal, fkMaquina) values (?, ?)", looca.getMemoria().getTotal(), maquina.getIdMaquina());
 //            }
@@ -56,14 +61,14 @@ public class InserirDadosNaTabela {
 
     }
 
-    public void inserindoDadosDinamicos() throws IOException {
+    public void inserindoDadosDinamicos() throws IOException, InterruptedException {
         //Inserindo no banco de dados da CPULeitura, puxando os dados pela API - looca
         con.update("INSERT INTO CPULeitura (uso, tempoAtividade, dataHoraLeitura, fkCPU) values (?, ?, now(), (select max(idcpu) from CPU))", looca.getProcessador().getUso(), looca.getSistema().getTempoDeAtividade());
         conServer.update("INSERT INTO CPULeitura (uso, tempoAtividade, dataHoraLeitura, fkCPU) values (?, ?, GETDATE(), (select max(idcpu) from CPU))", looca.getProcessador().getUso(), looca.getSistema().getTempoDeAtividade());
         //Inserindo no banco de dados da HDLeitura, puxando os dados pela API - looca
 
-        con.update("INSERT INTO HDLeitura (uso, disponivel, dataHoraLeitura, fkHD) values (?, ?, now(), (select max(idHD) from HD))", componentes.emUsoHD(), looca.getGrupoDeDiscos().getVolumes().get(1).getDisponivel());
-        conServer.update("INSERT INTO HDLeitura (uso, disponivel, dataHoraLeitura, fkHD) values (?, ?, GETDATE(), (select max(idHD) from HD))", componentes.emUsoHD(), looca.getGrupoDeDiscos().getVolumes().get(1).getDisponivel());
+        con.update("INSERT INTO HDLeitura (uso, disponivel, dataHoraLeitura, fkHD) values (?, ?, now(), (select max(idHD) from HD))", componentes.emUsoHD(), looca.getGrupoDeDiscos().getVolumes().get(0).getDisponivel());
+        conServer.update("INSERT INTO HDLeitura (uso, disponivel, dataHoraLeitura, fkHD) values (?, ?, GETDATE(), (select max(idHD) from HD))", componentes.emUsoHD(), looca.getGrupoDeDiscos().getVolumes().get(0).getDisponivel());
 
         //Inserindo no banco de dados da RAMLeitura, puxando os dados pela API - looca
         con.update("INSERT INTO RAMLeitura (emUso, disponivel, dataHoraLeitura, fkRam) values (?, ?, now(), (select max(idRAM) from RAM))", looca.getMemoria().getEmUso(), looca.getMemoria().getDisponivel());
@@ -74,11 +79,17 @@ public class InserirDadosNaTabela {
 //        con.update("INSERT INTO Rede (modelo, ipv4, fkMaquina) values (?, ?, ?)", looca.getRede().getParametros().getNomeDeDominio(), looca.getRede().getGrupoDeInterfaces().getInterfaces().get(0).getEnderecoIpv4(), maquina.getIdMaquina());
 
         //Inserindo no banco de dados da USB, puxando os dados pela API - looca
-        if(!looca.getDispositivosUsbGrupo().getTotalDispositvosUsbConectados().equals(con.update("select totalConectados from USB where max(dataHoraLeitura)"))) {
             for (int i = 0; i < looca.getDispositivosUsbGrupo().getDispositivosUsbConectados().size(); i++) {
-                con.update("INSERT INTO USB (totalConectados,dispositivo,dataHoraLeitura,fkMaquina)values(?,?,GETDATE(),?)", looca.getDispositivosUsbGrupo().getTotalDispositvosUsbConectados(),looca.getDispositivosUsbGrupo().getDispositivosUsbConectados().get(i), maquina.getIdMaquina());
-                conServer.update("INSERT INTO USB (totalConectados,dispositivo,dataHoraLeitura,fkMaquina)values(?,?,GETDATE(),?)", looca.getDispositivosUsbGrupo().getTotalDispositvosUsbConectados(),looca.getDispositivosUsbGrupo().getDispositivosUsbConectados().get(i), maquina.getIdMaquina());
+                con.update("INSERT INTO USB (totalConectados,dispositivo,dataHoraLeitura,fkMaquina)values(?,?,current_timestamp(),?);", looca.getDispositivosUsbGrupo().getTotalDispositvosUsbConectados(), looca.getDispositivosUsbGrupo().getDispositivosUsbConectados().get(i).getNome(), maquina.getIdMaquina());
+                conServer.update("INSERT INTO USB (totalConectados,dispositivo,dataHoraLeitura,fkMaquina)values(?,?,GETDATE(),?)", looca.getDispositivosUsbGrupo().getTotalDispositvosUsbConectados(), looca.getDispositivosUsbGrupo().getDispositivosUsbConectados().get(i).getNome(), maquina.getIdMaquina());
             }
+            JSONObject json = new JSONObject();
+        if (!((con.queryForMap("Select totalConectados from USB order by dataHoraLeitura desc limit 1").containsValue(looca.getDispositivosUsbGrupo().getTotalDispositvosUsbConectados())))){
+            json.put("text",(String.format("""
+                Novo USB conectado!
+                Nome : %s""", looca.getDispositivosUsbGrupo().getDispositivosUsb().get(looca.getDispositivosUsbGrupo().getTotalDispositvosUsbConectados()-1).getNome())));
+
+            Slack.sendMessage(json);
         }
     }
 }

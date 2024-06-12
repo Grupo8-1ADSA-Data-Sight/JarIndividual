@@ -186,8 +186,8 @@ public class Componentes extends Looca {
             json.put("text",(String.format("""
                 Uso da CPU acima de %.2f%%, manter alerta!!""", getProcessador().getUso())));
             Slack.sendMessage(json);
-
         }
+
 
         if (porcentagemDeUsoHD > 70.0){
             json.put("text", (String.format("""
