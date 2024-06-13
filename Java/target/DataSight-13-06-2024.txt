@@ -1,0 +1,1 @@
+DataSight 2024-06-13 00:13:28 - Construtor InserirDadosNaTabela chamado
